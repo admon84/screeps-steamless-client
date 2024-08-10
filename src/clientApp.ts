@@ -266,6 +266,9 @@ koa.use(async (context, next) => {
             const ptrValue = prefix === '/ptr' ? 'true' : 'false';
             src = src.replace(/(PTR: )[^,]*/, `$1${ptrValue}`);
 
+            const debugValue = 'true';
+            src = src.replace(/(DEBUG: )[^,]*/, `$1${debugValue}`);
+
             return src;
         } else if (context.path.endsWith('.js')) {
             let src = await file.async('text');

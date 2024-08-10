@@ -34,8 +34,9 @@ export async function isOfficialLikeVersion(client: Client) {
 /**
  * Extract the backend and endpoint from a URL.
  */
+const urlRegex = /^(?<backend>https?:\/\/[^/]+)(?<endpoint>.*)$/;
 export function extractBackend(url: string) {
-    const groups = /^\/\((?<backend>[^)]+)\)(?<endpoint>\/.*)$/.exec(url)?.groups;
+    const groups = urlRegex.exec(url)?.groups;
     if (groups) {
         return {
             backend: groups.backend.replace(/\/+$/, ''),

@@ -15,32 +15,32 @@ export function clientAuth(backend: string) {
     // Set the backend domain
     localStorage.backendDomain = backend;
 
-    // Set the auth token to guest if it's not set or if it's been more than an hour since the last token was set
-    if (
-        (localStorage.auth === 'null' && localStorage.prevAuth === 'null') ||
-        60 * 60 * 1000 < Date.now() - localStorage.lastToken ||
-        (localStorage.prevAuth !== '"guest"' && (localStorage.auth === 'null' || !localStorage.auth))
-    ) {
-        localStorage.auth = '"guest"';
-    }
+    // // Set the auth token to guest if it's not set or if it's been more than an hour since the last token was set
+    // if (
+    //     (localStorage.auth === 'null' && localStorage.prevAuth === 'null') ||
+    //     60 * 60 * 1000 < Date.now() - localStorage.lastToken ||
+    //     (localStorage.prevAuth !== '"guest"' && (localStorage.auth === 'null' || !localStorage.auth))
+    // ) {
+    //     localStorage.auth = '"guest"';
+    // }
 
     // Set the client to skip tutorials and tip of the day
     localStorage.tutorialVisited = 'true';
     localStorage.placeSpawnTutorialAsked = '1';
     localStorage.tipTipOfTheDay = '-1';
 
-    // Set the last token to the current time
-    localStorage.prevAuth = localStorage.auth;
-    localStorage.lastToken = Date.now();
+    // // Set the last token to the current time
+    // localStorage.prevAuth = localStorage.auth;
+    // localStorage.lastToken = Date.now();
 
-    // Update the last token if the auth token changes
-    let auth = localStorage.auth;
-    setInterval(() => {
-        if (auth !== localStorage.auth) {
-            auth = localStorage.auth;
-            localStorage.lastToken = Date.now();
-        }
-    }, 1000);
+    // // Update the last token if the auth token changes
+    // let auth = localStorage.auth;
+    // setInterval(() => {
+    //     if (auth !== localStorage.auth) {
+    //         auth = localStorage.auth;
+    //         localStorage.lastToken = Date.now();
+    //     }
+    // }, 1000);
 
     // The client will just fill this up with data until the application breaks.
     if (localStorage['users.code.activeWorld']?.length > 1024 * 1024) {
